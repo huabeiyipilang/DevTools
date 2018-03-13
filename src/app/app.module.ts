@@ -4,7 +4,8 @@ import { FormsModule } from '@angular/forms';
 
 import { AlertModule } from 'ngx-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule, MatCheckboxModule } from '@angular/material';
+import { MatInputModule } from '@angular/material/input';
+import { MatCardModule } from '@angular/material/card';
 
 import { AppComponent } from './app.component';
 import { TimeConvertComponent } from './modules/timeconvert/time_convert.component';
@@ -20,8 +21,8 @@ import { TimeConvertComponent } from './modules/timeconvert/time_convert.compone
     BrowserModule,
     FormsModule,
     BrowserAnimationsModule,
-    MatButtonModule,
-    MatCheckboxModule
+    MatInputModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [TimeConvertComponent]

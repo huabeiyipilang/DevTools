@@ -1,2 +1,6 @@
-<input [(ngModel)]="date" />
-<div id="date_display">时间日期:{{formatedDate()}}</div>
+<mat-card>
+    <mat-form-field>
+        <input matInput [(ngModel)]="date" placeholder="请输入时间戳" name="time" />
+    </mat-form-field>
+    <div id="date_display">时间日期:{{formatedDate()}}</div>
+</mat-card>
