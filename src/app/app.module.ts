@@ -6,15 +6,21 @@ import { AlertModule } from 'ngx-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatSliderModule } from '@angular/material/slider';
 
 import { AppComponent } from './app.component';
 import { TimeConvertComponent } from './modules/timeconvert/time_convert.component';
+import { ColorARGBComponent } from './modules/colorargb/color_argb.component';
+import { ColorValueComponent } from './modules/colorargb/color_value.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    TimeConvertComponent
+    TimeConvertComponent,
+    ColorARGBComponent,
+    ColorValueComponent
   ],
   imports: [
     AlertModule.forRoot(),
@@ -22,9 +28,11 @@ import { TimeConvertComponent } from './modules/timeconvert/time_convert.compone
     FormsModule,
     BrowserAnimationsModule,
     MatInputModule,
-    MatCardModule
+    MatCardModule,
+    MatGridListModule,
+    MatSliderModule
   ],
   providers: [],
-  bootstrap: [TimeConvertComponent]
+  bootstrap: [ColorARGBComponent]
 })
 export class AppModule { }
