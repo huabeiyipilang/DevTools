@@ -1,5 +1,6 @@
-import { Component, OnInit, Input, forwardRef } from '@angular/core';
+import { Component, OnInit, Input, forwardRef, SimpleChange } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { MatSnackBar } from '@angular/material';
 
 export const EXE_COLOR_VALUE_ACCESSOR: any = {
     provide: NG_VALUE_ACCESSOR,
@@ -15,29 +16,38 @@ export const EXE_COLOR_VALUE_ACCESSOR: any = {
 })
 
 export class ColorValueComponent implements ControlValueAccessor, OnInit {
-    @Input() label = "A";
+    @Input() label = "X";
     @Input() value: number = 0;
     percentHidden = true;
 
-    constructor() { }
+    constructor(public snackBar: MatSnackBar) { }
 
-    ngOnInit() { }
-
-    setLabel(label: string) {
-        this.label = label;
-        if (label === "A") {
-            this.percentHidden = false;
-        }
+    ngOnInit() { 
     }
 
     writeValue(value: any) {
         if (value !== undefined) {
-            if (this.isAvailableValue(value)) {
-                this.value = value;
-            } else {
-                // todo 错误提示
+            this.value = value;
+        }
+    }
+
+    ngOnChanges(changes: { [propName: string]: SimpleChange }) {
+        this.snackBar.open("Invalid value!", null, { duration: 2000 });
+        if (this.isPropChanged(changes, 'label')) {
+            if (this.label === "A") {
+                this.percentHidden = false;
+            }
+        } else if (this.isPropChanged(changes, 'value')) {
+            if (!this.isAvailableValue(this.value)) {
+                this.snackBar.open("Invalid value!");
+                this.value = changes['value'].previousValue;
             }
         }
+    }
+
+    isPropChanged(changes: { [propName: string]: SimpleChange }, prop: string) {
+        var change = changes[prop];
+        return change && change.previousValue != change.currentValue
     }
 
     propagateChange = (_: any) => { };

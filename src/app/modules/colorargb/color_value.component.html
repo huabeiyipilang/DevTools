@@ -1,11 +1,11 @@
 <label>{{label}}</label>
 <label class="color_item_label">16进制</label>
-<input matInput class="color_value_input" [(ngModel)]="value">
-<label class="color_item_label">10进制</label>
 <input matInput class="color_value_input">
+<label class="color_item_label">10进制</label>
+<input matInput class="color_value_input" [(ngModel)]="value">
 <label class="color_item_label" [hidden]="percentHidden">透明度</label>
 <input matInput class="color_value_input" [hidden]="percentHidden">
 <label [hidden]="percentHidden">%</label>
 <br/>
-<mat-slider [max]="255" [min]="0" [step]="1" [thumb-label]="thumbLabel" style="width:450px;margin-left:35px">
+<mat-slider [max]="255" [min]="0" [step]="1" [thumb-label]="thumbLabel" [(ngModel)]="value" style="width:450px;margin-left:35px">
 </mat-slider>

@@ -8,6 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatSliderModule } from '@angular/material/slider';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { AppComponent } from './app.component';
 import { TimeConvertComponent } from './modules/timeconvert/time_convert.component';
@@ -30,7 +31,8 @@ import { ColorValueComponent } from './modules/colorargb/color_value.component';
     MatInputModule,
     MatCardModule,
     MatGridListModule,
-    MatSliderModule
+    MatSliderModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [ColorARGBComponent]
