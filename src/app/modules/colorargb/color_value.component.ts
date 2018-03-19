@@ -18,30 +18,40 @@ export const EXE_COLOR_VALUE_ACCESSOR: any = {
 export class ColorValueComponent implements ControlValueAccessor, OnInit {
     @Input() label = "X";
     @Input() value: number = 0;
+    vlauePre: number;
     percentHidden = true;
 
     constructor(public snackBar: MatSnackBar) { }
 
-    ngOnInit() { 
+    ngOnInit() {
     }
 
     writeValue(value: any) {
         if (value !== undefined) {
             this.value = value;
+            this.updateValue(value);
         }
     }
 
     ngOnChanges(changes: { [propName: string]: SimpleChange }) {
-        this.snackBar.open("Invalid value!", null, { duration: 2000 });
         if (this.isPropChanged(changes, 'label')) {
             if (this.label === "A") {
                 this.percentHidden = false;
             }
-        } else if (this.isPropChanged(changes, 'value')) {
-            if (!this.isAvailableValue(this.value)) {
-                this.snackBar.open("Invalid value!");
-                this.value = changes['value'].previousValue;
-            }
+        }
+    }
+
+    onColorDecimalValueChanged(decValue: number) {
+        this.updateValue(decValue);
+    }
+
+    updateValue(decValue: number) {
+        if (this.isAvailableValue(decValue)) {
+            this.vlauePre = decValue;
+        } else {
+            this.snackBar.open("Invalid value!");
+            this.value = this.vlauePre;
+            console.log("updateValue invalid value:" + this.value);
         }
     }
 
