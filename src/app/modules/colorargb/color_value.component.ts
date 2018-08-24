@@ -41,6 +41,11 @@ export class ColorValueComponent implements ControlValueAccessor, OnInit {
         }
     }
 
+    isPropChanged(changes: { [propName: string]: SimpleChange }, prop: string) {
+        var change = changes[prop];
+        return change && change.previousValue != change.currentValue
+    }
+
     onColorDecimalValueChanged(decValue: number) {
         this.updateValue(decValue);
     }
@@ -53,11 +58,6 @@ export class ColorValueComponent implements ControlValueAccessor, OnInit {
             this.value = this.vlauePre;
             console.log("updateValue invalid value:" + this.value);
         }
-    }
-
-    isPropChanged(changes: { [propName: string]: SimpleChange }, prop: string) {
-        var change = changes[prop];
-        return change && change.previousValue != change.currentValue
     }
 
     propagateChange = (_: any) => { };
